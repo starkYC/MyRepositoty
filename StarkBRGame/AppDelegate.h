@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <FacebookSDK/FacebookSDK.h>
+@class GTMOAuth2Authentication;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
+
+- (void)sessionStateChanged:(FBSession *)session state:(FBSessionState) state error:(NSError *)error;
 
 @property (strong, nonatomic) UIWindow *window;
 
