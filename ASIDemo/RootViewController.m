@@ -100,6 +100,7 @@
 	[request release];
     }*/
     
+    
     NSURL *url = [NSURL URLWithString:@"http://dl_dir.qq.com/invc/qqpinyin/QQPinyin_Setup_4.6.2028.400.exe"];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url];
     request.cachePolicy = NSURLRequestReloadIgnoringCacheData;
