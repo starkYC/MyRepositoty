@@ -5,7 +5,6 @@
 //  Created by gaoyangchun on 14-1-15.
 //  Copyright (c) 2014年 斯塔克互动科技有限公司. All rights reserved.
 //
-
 #import "AppDelegate.h"
 
 #import "STARKBoutiqueViewController.h"
@@ -31,10 +30,7 @@ static NSString * const kClientID =
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    
-
     [self createTabbar];
-
     //FB 登录 声明
      [FBLoginView class];
     
@@ -99,8 +95,6 @@ static NSString * const kClientID =
     UINavigationController *nav4 = [[UINavigationController alloc] initWithRootViewController:setter];
    
     UITabBarController *tabbar = [[UITabBarController alloc] init];
-    
-    // NSArray *views = [[NSArray alloc] initWithObjects:nav1,nav2,nav3,nav4, nil];
     
     tabbar.viewControllers = [NSArray arrayWithObjects:nav1,nav2,nav3,nav4, nil];
     

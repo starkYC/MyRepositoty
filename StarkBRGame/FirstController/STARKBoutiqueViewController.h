@@ -7,12 +7,14 @@
 //
 
 #import "RootViewController.h"
-#import "EGORefreshTableHeaderView.h"
+
 
 //精品游戏界面
 @interface STARKBoutiqueViewController : RootViewController
 
 @property (weak, nonatomic) IBOutlet UITableView *BoutiqueView;
 
+
+- (void)fillReqRefresh;
 
 @end
