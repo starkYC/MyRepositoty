@@ -7,6 +7,7 @@
 //
 
 #import "RootViewController.h"
+#import "AccoutInfo.h"
 #import <FacebookSDK/FacebookSDK.h>
 //个人中心界面
 
@@ -25,6 +26,7 @@
 
 @property (nonatomic,assign) id <PersonDelegate> delegate;
 
+@property (nonatomic,retain) AccoutInfo *userInfo;
 - (IBAction)signout:(id)sender ;
 @end
 

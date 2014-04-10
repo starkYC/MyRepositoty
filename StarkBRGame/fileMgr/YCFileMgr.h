@@ -30,7 +30,7 @@
  writeData：要保存的内容
  append：是否追加到文件
  */
-+(BOOL)saveDataToFullPath:(NSInteger)gamePage data:(NSData *)data append:(BOOL)flag;
++(BOOL)saveDataToFullPath:(NSString *)vc andPage:(NSInteger)Page data:(NSData *)data append:(BOOL)flag;
 
 /*
  删除文件
@@ -58,6 +58,8 @@
 
 //获取gameData目录（没有就创建）
 +(NSString*)getGameDataFile;
+//获取activityData目录（没有就创建）
++(NSString*)getActivityDataFile;
 
 +(BOOL)isFileExistAtPath:(NSString*)fileFullPath;
 

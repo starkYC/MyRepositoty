@@ -32,6 +32,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self  setValueForUI];
+
 }
 
 - (void)setValueForUI{
@@ -44,19 +45,8 @@
     }
     [_appImage setImageWithURL:[NSURL URLWithString:_model.imageAdr]];
    // _appTitle.text = _model.title;
-    _summartText.text =  _model.summary;
-    _url = _model.appID;
-    _appPrice.text = _model.price;
-
-    self.scrollView.contentSize = CGSizeMake(320, 568-64-49);
+        _appPrice.text = _model.price;
 }
-//去app store
-- (IBAction)downloadFromAPPStore:(id)sender{
-
-    STRLOG(@"url:%@",_url);
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_url]];
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

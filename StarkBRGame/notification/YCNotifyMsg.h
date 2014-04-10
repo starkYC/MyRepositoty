@@ -17,7 +17,7 @@
 
 
 @property (nonatomic,assign) NSInteger code;
-
+@property (nonatomic,copy) NSString *vc;
 //发送一个通知
 
 +(YCNotifyMsg*)shareYCNotifyMsg;

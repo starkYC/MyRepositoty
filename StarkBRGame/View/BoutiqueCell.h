@@ -13,8 +13,12 @@
 
 @property (retain, nonatomic) IBOutlet UIImageView *image;
 @property (retain, nonatomic) IBOutlet UILabel *title;
+@property (weak, nonatomic) IBOutlet UILabel *version;
+@property (weak, nonatomic) IBOutlet UILabel *size;
+@property (weak, nonatomic) IBOutlet UILabel *times;
 
-
+@property (nonatomic,copy) NSString *url;
 - (void)fillData:(BoutiqueModel*)model;
 
+- (IBAction)downLoadApp :(id)sender ;
 @end

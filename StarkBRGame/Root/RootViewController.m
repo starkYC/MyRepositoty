@@ -30,7 +30,7 @@
 
 @synthesize reqPage = _reqPage;
 @synthesize locPage = _locPage;
-@synthesize gameData = _gameData;
+@synthesize Data = _Data;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -39,8 +39,8 @@
         
         Flag = 1;
         self.locPage = 0;
-        self.reqPage = 0;
-        self.gameData = [[NSMutableData alloc]init];
+        self.reqPage = 1;
+        self.Data = [[NSMutableData alloc]init];
     }
     return self;
 }
@@ -51,16 +51,35 @@
 
 }
 
-- (BOOL)checkOutLocalData:(NSInteger)page{
-   
-    NSString *fileName = [NSString stringWithFormat:@"page%ld.txt",(long)page];
-    NSString *gameDataPath = [YCFileMgr getGameDataFile];
-    NSString *pagePath = [gameDataPath stringByAppendingPathComponent:fileName];
-    NSData   *gamedata = [NSData dataWithContentsOfFile:pagePath];
+- (BOOL)checkOutLocalData:(NSString *)vc andPage:(NSInteger)page{
     
-    if (gamedata) {
-        self.gameData = (NSMutableData*)gamedata;
-        return YES;
+    if ([vc isEqualToString:@"boutique"]) {
+        NSString *fileName = [NSString stringWithFormat:@"page%ld.txt",(long)page];
+        NSString *gameDataPath = [YCFileMgr getGameDataFile];
+        NSString *pagePath = [gameDataPath stringByAppendingPathComponent:fileName];
+        NSData   *gamedata = [NSData dataWithContentsOfFile:pagePath];
+        
+        if (gamedata) {
+            self.Data = (NSMutableData*)gamedata;
+            return YES;
+        }else{
+            return NO;
+        }
+
+    }else if ([vc isEqualToString:@"activity"]){
+        
+        NSString *fileName = [NSString stringWithFormat:@"page%ld.txt",(long)page];
+        NSString *avtivityDataPath = [YCFileMgr getActivityDataFile];
+        NSString *pagePath = [avtivityDataPath stringByAppendingPathComponent:fileName];
+        NSData   *activitydata = [NSData dataWithContentsOfFile:pagePath];
+        
+        if (activitydata) {
+            self.Data = (NSMutableData*)activitydata;
+            return YES;
+        }else{
+            return NO;
+        }
+
     }else{
         return NO;
     }
@@ -70,38 +89,25 @@
     BOOL isConnect = [[ReachAble reachAble] isConnectionAvailable];
     return isConnect;
 }
-- (void)startRequest:(NSString*)url{
 
-    if (![self checkNetWork]) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"您的网络异常，请检查后重新刷新" message:nil delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil, nil];
-        [alert show];
-        return ;
-    }
-    /*
-     下拉刷新
-     */
-    if (self.reqPage == 1 && (self.locPage == 0 || self.reqPage<=self.locPage) ) {
-        //清除gameData目录下游戏数据
-        [YCFileMgr removeFile:[YCFileMgr getGameDataFile]];
-    }
-    if (![self checkOutLocalData:self.reqPage]) {
-        STRLOG(@"%ld页,请求",self.reqPage);
-        [self addMessage:url method:@selector(GameDataReceicve:)];
-        [[YCGameMgr sharedInstance]getGameDataFromServer:url andPage:self.reqPage];
-        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-    }
+- (void)startRequest:(NSString *)vc andUrl:(NSString *)url{
+  
+    STRLOG(@"%ld页,请求",(long)self.reqPage);
+    [self addMessage:url method:@selector(DataReceicve:)];
+    [[YCGameMgr sharedInstance] getDataFromServer:vc andUrl:url andPage:self.reqPage];
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
 }
-- (void)GameDataReceicve:(NSNotification*)Notifi{
+
+- (void)DataReceicve:(NSNotification*)Notifi{
     
     [self removeMessage:Notifi.name];
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-    STRLOG(@"GameDataReceicve");
-    self.gameData = [[YCGameMgr sharedInstance].dict objectForKey:Notifi.name];
-    
-    STRLOG(@"code:%ld",[YCNotifyMsg shareYCNotifyMsg].code);
+    STRLOG(@"DataReceicve");
+    STRLOG(@"code:%ld", (long)[YCNotifyMsg shareYCNotifyMsg].code);
     switch ([YCNotifyMsg shareYCNotifyMsg].code) {
         case 0:
             self.locPage = self.reqPage;
+            self.Data = [[YCGameMgr sharedInstance].dict objectForKey:Notifi.name];
             break;
         case 1:
             STRLOG(@"NOTIFY_CODE_HTTP_ERR");

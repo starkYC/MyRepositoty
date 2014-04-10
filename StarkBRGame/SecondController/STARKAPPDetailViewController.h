@@ -10,15 +10,16 @@
 #import "BoutiqueModel.h"
 
 @interface STARKAPPDetailViewController : RootViewController<UIScrollViewDelegate>
-
+{
+    //截图放大
+    UIScrollView *_bigScrollView;
+    UIPageControl *_pageControl;
+}
 @property (nonatomic,assign) BoutiqueModel *model;
-@property (nonatomic,copy) NSString *url;
+
 @property (weak, nonatomic) IBOutlet UIImageView *appImage;
 @property (weak, nonatomic) IBOutlet UILabel *appTitle;
 @property (weak, nonatomic) IBOutlet UILabel *appPrice;
-@property (weak, nonatomic) IBOutlet UITextView *summartText;
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-
-- (IBAction)downloadFromAPPStore:(id)sender;
+@property (weak, nonatomic) IBOutlet UIScrollView *screenshotView;
 
 @end

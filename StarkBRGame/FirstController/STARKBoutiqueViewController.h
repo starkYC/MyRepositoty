@@ -10,10 +10,9 @@
 
 
 //精品游戏界面
-@interface STARKBoutiqueViewController : RootViewController
+@interface STARKBoutiqueViewController : RootViewController<UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *BoutiqueView;
-
 
 - (void)fillReqRefresh;
 

@@ -49,9 +49,7 @@ YCRequestCenter *__RequestCenter;
 -(void)dealloc
 {
     [_reqQueue cancelAllOperations];
-    [_reqQueue release];
-    
-    [super dealloc];
+   
 }
 
 - (ASIHTTPRequest*)makeASIRequest:(YCRequestParas*)paras
@@ -92,6 +90,7 @@ YCRequestCenter *__RequestCenter;
     
     return nil;
 }
+
 - (ASIHTTPRequest*)makeASIRequestAndStart:(YCRequestParas*)paras
 {
     ASIHTTPRequest* retVal = [self makeASIRequest:paras];

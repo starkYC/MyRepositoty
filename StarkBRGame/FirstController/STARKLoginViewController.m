@@ -14,6 +14,8 @@
 #import "AccoutInfo.h"
 #import "AppDelegate.h"
 
+
+
 @interface STARKLoginViewController ()<GPPSignInDelegate>
 {
     UIActivityIndicatorView *_indicatorView;
@@ -22,14 +24,15 @@
 @end
 
 @implementation STARKLoginViewController
-@synthesize userID = _userID;
-@synthesize type = _type;
+
+@synthesize userInfo = _userInfo;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         canEnter = NO;
+        
     }
     return self;
 }
@@ -88,8 +91,7 @@
     [super viewDidLoad];
     self.navigationController.navigationBar.translucent = NO;
     /*初始化*/
-    self.type = [[NSString alloc] init];
-    self.userID = [[NSString alloc] init];
+    self.userInfo = [[AccoutInfo alloc] init];
     /*对google登陆进行设置*/
     [self gppInit];
 //    NSString *path = [[NSBundle mainBundle] pathForResource:@"fbbutton" ofType:@"png"];
@@ -220,11 +222,19 @@
             NSLog(@"user info: %@", result);
             
             if ([result isKindOfClass:[NSDictionary class]]) {
-                self.userID = [result objectForKey:@"id"];
-                self.nameLabel.text = [result objectForKey:@"name"];
-                self.idLabel.text = self.userID;
+                
+                self.idLabel.text = self.userInfo.userID;
                 self.emailLabel.text = @"Fb Email...";
-                self.type = @"facebook";
+                self.nameLabel.text = [result objectForKey:@"name"];
+                
+                /*   Set UserInfo */
+                self.userInfo.userID = [result objectForKey:@"id"];
+                self.userInfo.userName = [result objectForKey:@"name"];
+                self.userInfo.type = @"facebook";
+                self.userInfo.imageUrl = @"";
+                
+                STRLOG(@"userInfo:%@",self.userInfo);
+                
                 [_indicatorView stopAnimating];
                 [self enterPersonCenter];
             }
@@ -250,27 +260,21 @@
             
             GTLPlusPerson *person = [GPPSignIn sharedInstance].googlePlusUser;
             
-            STRLOG(@"image:%@",person.image.url);
-            STRLOG(@"familyName:%@",person.name.familyName);
-            STRLOG(@"givenName:%@",person.name.givenName);
-            STRLOG(@"identifier:%@",person.identifier);
-            STRLOG(@"name:%@",person.displayName);
-            STRLOG(@"userID:%@",[GPPSignIn sharedInstance].userID);
-            STRLOG(@"userEmail:%@",[GPPSignIn sharedInstance].userEmail);
-            self.emailLabel.text = [GPPSignIn sharedInstance].userEmail;
+                        self.emailLabel.text = [GPPSignIn sharedInstance].userEmail;
             self.idLabel.text = [GPPSignIn sharedInstance].userID;
             self.nameLabel.text = person.displayName;
             
-            self.type = @"google";
-            self.userID = [GPPSignIn sharedInstance].userID;
+            /*   Set UserInfo */
+            self.userInfo.type = @"google";
+            self.userInfo.imageUrl = person.image.url;
+            self.userInfo.userID = [GPPSignIn sharedInstance].userID;
+            self.userInfo.userName = person.displayName;
+            self.userInfo.userEmail = [GPPSignIn sharedInstance].userEmail;
             
-            AccoutInfo *info = [[AccoutInfo alloc] init];
-            info.userID = self.userID;
-            info.userName = self.nameLabel.text;
-            info.userEmail = self.emailLabel.text;
+            STRLOG(@"userInfo:%@",self.userInfo);
             
-            if (self.userID.length != 0 ) {
-                [self writeToGoogle:info];
+            if ( self.userInfo.userID != nil && self.userInfo.userID.length != 0) {
+                [self writeToGoogle:self.userInfo];
                 [self  enterPersonCenter];
             }else{
                 STRLOG(@"id为空");
@@ -291,6 +295,7 @@
 #pragma mark 更新与进入
 
 - (void)enterPersonCenter{
+    
     canEnter = YES;
     STRLOG(@"准备进入个人中心");
    
@@ -298,21 +303,13 @@
         self.view.userInteractionEnabled = YES;
         [_indicatorView stopAnimating];
         STARKPersonalViewController *personal = [[STARKPersonalViewController alloc] initWithNibName:@"STARKPersonalViewController" bundle:nil];
-        
-        personal.type = self.type;
-        personal.userID = self.userID;
-        personal.name = self.nameLabel.text;
+        personal.userInfo = self.userInfo;
         personal.delegate = self;
-        
         [self.navigationController presentViewController:personal animated:YES completion:^{
             
         }];
-//        [self presentViewController:personal animated:YES completion:^{
-//            
-//        }];
-
     }else{
-        STRLOG(@"index:%d",self.tabBarController.selectedIndex);
+        STRLOG(@"index:%lu",(unsigned long)self.tabBarController.selectedIndex);
     }
 }
 
@@ -339,9 +336,6 @@
    });
 }
 //facebook用户信息写入本地
-- (void)writeToFacebook{
-    
-}
 
 //删除google用户信息
 - (void)removeGoogleInfo{

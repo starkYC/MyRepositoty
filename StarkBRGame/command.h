@@ -9,6 +9,8 @@
 #ifndef StarkBRGame_command_h
 #define StarkBRGame_command_h
 
+#define Width self.view.bounds.size.width
+#define Height self.view.bounds.size.height
 
 //输出调试信息
 #define PRINT_DEBUG
@@ -17,7 +19,6 @@
 #else
 #define STRLOG( s, ... )
 #endif
-
 #define HTTP_MOTHOD_POST        @"post"
 #define HTTP_MOTHOD_GET         @"get"
 #define HTTP_MOTHOD_UPLOADFILE  @"uploadfile"

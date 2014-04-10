@@ -8,6 +8,7 @@
 
 #import "STARKPersonalViewController.h"
 
+#import "UIImageView+WebCache.h"
 
 @interface STARKPersonalViewController ()
 
@@ -15,10 +16,10 @@
 
 @implementation STARKPersonalViewController
 
-@synthesize name = _name;
-@synthesize type = _type;
-@synthesize userID = _userID;
-#define Height 64
+@synthesize userInfo = _userInfo;
+
+#define ImageHeight 64
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -31,17 +32,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     self.view.backgroundColor = [UIColor whiteColor];
    
-    STRLOG(@"方式为:%@",self.type);
-    STRLOG(@"个人ID:%@",self.userID);
-    self.nameLabel.text = self.name;
-//    [FBProfilePictureView class];
-//    
-//    FBProfilePictureView *ds = [[FBProfilePictureView alloc] initWithFrame:CGRectMake(0, Height, 200, 150)];
-//    ds.profileID = self.userID;
-//    ds.pictureCropping  = 1;
-//    [self.view addSubview:ds];
+    self.nameLabel.text = self.userInfo.userName;
+    
+    if ([self.userInfo.type isEqualToString:@"facebook"]) {
+        
+        [FBProfilePictureView class];
+        FBProfilePictureView *ds = [[FBProfilePictureView alloc] initWithFrame:CGRectMake(0, ImageHeight, 200, 150)];
+        ds.profileID = self.userID;
+        ds.pictureCropping  = 1;
+        [self.view addSubview:ds];
+    }else{
+        
+        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, ImageHeight, 200, 150)];
+        [imgView setImageWithURL:[NSURL URLWithString:self.userInfo.imageUrl]];
+        [self.view addSubview:imgView];
+    }
 }
 
 - (IBAction)signout:(id)sender{
@@ -51,7 +59,6 @@
     
         [self.delegate personSignout:self.type];
     }else{
-        
         STRLOG(@"代理方法没写");
     }
 
@@ -59,6 +66,7 @@
         
     }];
 }
+
 
 - (void)didReceiveMemoryWarning
 {

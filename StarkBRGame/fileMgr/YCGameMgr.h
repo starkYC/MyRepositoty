@@ -19,6 +19,7 @@
 @property (nonatomic,strong) NSString *DownUrl;
 @property (nonatomic,assign) NSInteger Gamepage;
 @property (nonatomic,strong) NSMutableDictionary *dict;
+
 + (YCGameMgr*)sharedInstance;
 
 /*
@@ -26,12 +27,9 @@
  headUrl: 基础接口
  page:页数参数
  */
-- (void)getGameDataFromServer:(NSString *)headUrl andPage:(NSInteger)page;
-
+- (void)getDataFromServer:(NSString *)vc andUrl:(NSString *)headUrl andPage:(NSInteger)page;
 /*
  保存用户信息到本地
-
- 
 */
 - (BOOL)saveUserData:(BOOL)isUserInfoOnly;
 

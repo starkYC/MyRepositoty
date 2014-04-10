@@ -37,9 +37,8 @@ YCGameMgr *__userMgr ;
     return __userMgr;
 }
 
-- (void)getGameDataFromServer:(NSString *)headUrl andPage:(NSInteger)page{
-   
-
+- (void)getDataFromServer:(NSString *)vc andUrl:(NSString *)headUrl andPage:(NSInteger)page{
+    
     YCRequestParas *parasUserInfo =[[YCRequestParas alloc]init];
     parasUserInfo.reqDelegate = self;
     parasUserInfo.downUrl = headUrl;
@@ -48,12 +47,12 @@ YCGameMgr *__userMgr ;
     //请求UserInfo用于解析的标识
     NSMutableDictionary *reqInfoDict = [NSMutableDictionary dictionary];
     [reqInfoDict setObject:headUrl forKey:headUrl];
+    [reqInfoDict setObject:vc forKey:@"vc"];
+    [reqInfoDict setObject:[NSString stringWithFormat:@"%ld",(long)page] forKey:@"page"];
     parasUserInfo.userInfo = reqInfoDict;
-    
     //执行请求
     [[YCRequestCenter sharedInstance] makeASIRequestAndStart:parasUserInfo];
 }
-
 
 - (void)requestFailed:(ASIHTTPRequest *)request{
      STRLOG(@"Error:%@",request.error);
@@ -81,10 +80,14 @@ YCGameMgr *__userMgr ;
                 [YCNotifyMsg shareYCNotifyMsg].code = NOTIFY_CODE_RESPONDATA_ERR;
             }
         }else{
-             [YCNotifyMsg shareYCNotifyMsg].code = NOTIFY_CODE_OK;
+            
             [self.dict setObject:request.responseData forKey:self.DownUrl];
             //本地保存
-            [YCFileMgr saveDataToFullPath:_Gamepage data:request.responseData append:NO];
+            NSString *vc = [request.userInfo objectForKey:@"vc"];
+            NSString *page = [request.userInfo objectForKey:@"page"];
+            [YCFileMgr saveDataToFullPath:vc andPage:[page integerValue] data:request.responseData append:NO];
+            [YCNotifyMsg shareYCNotifyMsg].code = NOTIFY_CODE_OK;
+            [YCNotifyMsg shareYCNotifyMsg].vc = vc;
         }
         [self postVCRequest];
     }

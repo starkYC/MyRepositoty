@@ -7,6 +7,7 @@
 //
 
 #import "BoutiqueCell.h"
+
 #import "UIImageView+WebCache.h"
 
 @implementation BoutiqueCell
@@ -15,7 +16,7 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        // Initialization code
+        
     }
     return self;
 }
@@ -23,8 +24,7 @@
 - (void)fillData:(BoutiqueModel*)model{
     
     if (model) {
-        
-       /// _title.text = model.title;
+        //设置图片
         NSRange range = [model.title rangeOfString:@"-"];
         if (range.location != NSNotFound) {
             NSString * str = [model.title substringToIndex:range.location];
@@ -32,9 +32,18 @@
             _title.adjustsFontSizeToFitWidth = YES;
            // model.title = str;
         }
-    
         [_image setImageWithURL:[NSURL URLWithString:model.imageAdr]];
+        
+        _size.text = model.size;
+        _times.text = model.times;
+        _version.text = model.version;
+        _url = model.appID;
     }
+
+}
+- (IBAction)downLoadApp :(id)sender{
+    
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_url]];
 
 }
 

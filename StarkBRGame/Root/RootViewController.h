@@ -21,12 +21,14 @@
 @property (nonatomic,assign) NSInteger reqPage;
 //当前已经请求过的页数
 @property (nonatomic,assign) NSInteger locPage ;
-@property (nonatomic,strong) NSMutableData *gameData ;
+@property (nonatomic,retain) NSMutableData *Data ;
 
-- (void)GameDataReceicve:(NSNotification*)Notifi;
-- (void)startRequest:(NSString*)url;
-- (BOOL)checkOutLocalData:(NSInteger)page;
+- (void)DataReceicve:(NSNotification*)Notifi;
+- (void)startRequest:(NSString *)vc andUrl:(NSString*)url;
+- (BOOL)checkOutLocalData:(NSString *)vc andPage:(NSInteger)page ;
+
 - (void)showAlert:(NSInteger)code;
+
 - (BOOL)checkNetWork;
 
 @end

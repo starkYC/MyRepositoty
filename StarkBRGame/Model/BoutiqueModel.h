@@ -16,6 +16,9 @@
 @property (nonatomic,copy) NSString *title;
 @property (nonatomic,copy) NSString *summary;
 @property (nonatomic,copy) NSString *price ;
+@property (nonatomic,copy) NSString *size;
+@property (nonatomic,copy) NSString *times;
+@property (nonatomic,copy) NSString *version;
 
 
 @end

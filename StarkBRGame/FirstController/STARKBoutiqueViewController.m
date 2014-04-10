@@ -17,6 +17,7 @@
 #import "YCGameMgr.h"
 #import "YCFileMgr.h"
 #import "YCNotifyMsg.h"
+#import "HeadView.h"
 
 @interface STARKBoutiqueViewController ()
 {
@@ -28,8 +29,8 @@
 @end
 
 @implementation STARKBoutiqueViewController
-@synthesize BoutiqueView = _BoutiqueView;
 
+@synthesize BoutiqueView = _BoutiqueView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -44,15 +45,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    self.view.backgroundColor = [UIColor whiteColor];
     self.navigationController.navigationBar.translucent = NO;
 
     _dataArray = [[NSMutableArray alloc] init];
-    self.view.backgroundColor = [UIColor whiteColor];
+    //设置图片墙
+    
+    HeadView *headView = [[HeadView alloc] initWithFrame:CGRectMake(0, 0, 320, 150)];
+    _BoutiqueView.tableHeaderView = headView;
     // 1集成刷新控件
     // 1.1.下拉刷新
     [self addHeader];
-    
     // 1.2.上拉加载更多
     [self addFooter];
 }
@@ -69,7 +72,7 @@
         Flag = 1;
         self.reqPage  = 1;
         NSString *str =@"https://itunes.apple.com/br/rss/topfreeapplications/limit=10/genre=6014/xml";
-        [self startRequest:str];
+        [self BoutiquestartRequest:str];
         STRLOG(@"%@----开始进入刷新状态", refreshView.class);
     };
     [header beginRefreshing];
@@ -83,26 +86,47 @@
         NSString *strUrl = @"https://itunes.apple.com/br/rss/topfreeapplications/limit=10/genre=6014/xml";
         Flag = 0;
         self.reqPage ++;
-        [self startRequest:strUrl];
-      //  STRLOG(@"%@----开始进入刷新状态", refreshView.class);
+        [self BoutiquestartRequest:strUrl];
+        STRLOG(@"%@----开始进入刷新状态", refreshView.class);
     };
     _footer = footer;
 }
 
-- (void)startRequest:(NSString *)url{
+- (void)BoutiquestartRequest:(NSString *)url{
     
-    [super startRequest:url];
+    //[super startRequest:url];
     
     if (![self checkNetWork]) {
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"您的网络异常，请检查后重新刷新" message:nil delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil, nil];
+        [alert show];
+        
         [self fillReqRefresh];
+        
+        return;
     }
     STRLOG(@"check");
-    if ([self checkOutLocalData:self.reqPage]) {
-        [self reloadData:self.gameData];
+    /*
+     下拉刷新
+     */
+    if (self.reqPage == 1 && (self.locPage != 0 || self.reqPage<=self.locPage) ) {
+        //清除gameData目录下游戏数据
+        STRLOG(@"clear all gamedata");
+        [YCFileMgr removeFile:[YCFileMgr getGameDataFile]];
+    }
+    
+    if ([self checkOutLocalData:@"boutique" andPage:self.reqPage]) {
+        STRLOG(@"cache");
+        self.locPage = self.reqPage;
+        [self reloadData:self.Data];
+    }else {
+        
+        [self startRequest:@"boutique" andUrl:url];
     }
 }
 
 - (void)fillReqRefresh{
+    
     if (Flag == 1) {
         [self doneWithView:_header];
     }else{
@@ -112,7 +136,7 @@
 
 - (void)doneWithView:(MJRefreshBaseView *)refreshView
 {
- 
+    STRLOG(@"refreshView");
     [refreshView endRefreshing];
     // 刷新表格
     [self.BoutiqueView reloadData];
@@ -123,11 +147,11 @@
 
 #pragma mark 网络请求和解析
 
-- (void)GameDataReceicve:(NSNotification*)Notifi{
+- (void)DataReceicve:(NSNotification*)Notifi{
     
-    [super GameDataReceicve:Notifi];
+    [super DataReceicve:Notifi];
     if ( [YCNotifyMsg shareYCNotifyMsg].code == 0) {
-         [self reloadData:self.gameData];
+         [self reloadData:self.Data];
     }else{
         [self fillReqRefresh];
     }
@@ -166,19 +190,17 @@
     }
     [_dataArray addObject:array];
     [self fillReqRefresh];
+
 }
 
 #pragma mark tableView delegate
 
-- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-
-    int count = (int)(section +1);
-    NSString *title = [NSString stringWithFormat:@"第%d页",count];
-    return title;
-}
+//- (UIView*)tableView:(UITableView*)tableView viewForHeaderInSection:(NSInteger)section{
+//    return _scrollView;
+//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+  
     return 70;
 }
 

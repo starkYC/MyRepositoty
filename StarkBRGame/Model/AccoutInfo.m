@@ -13,4 +13,7 @@
 @synthesize userName = _userName;
 @synthesize userEmail = _userEmail;
 @synthesize userID = _userID;
+@synthesize imageUrl = _imageUrl;
+@synthesize type = _type;
+
 @end

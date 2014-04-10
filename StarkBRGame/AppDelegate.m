@@ -21,31 +21,33 @@
 
 @implementation AppDelegate
 
-static NSString * const kClientID =
-    @"803321454103-bm4tlrummv6s7neo4okm7kq0ohsuuck1.apps.googleusercontent.com";
+//static NSString * const kClientID = @"803321454103-bm4tlrummv6s7neo4okm7kq0ohsuuck1.apps.googleusercontent.com";
 
+static NSString * const kClientID = @"518282106675-gqgcgnne0pk0da7lc1t510va4unbh1fg.apps.googleusercontent.com";
 #pragma mark Object life-cycle.
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    [self createTabbar];
-    //FB 登录 声明
-     [FBLoginView class];
     
+    //FB 登录 声明
+    [FBLoginView class];
     //Google 登录
     [GPPSignIn class];
-    [GPPSignIn sharedInstance].clientID = kClientID;
+    
+   [GPPSignIn sharedInstance].clientID = kClientID;
     [GPPURLHandler class];
     
     //清除FBSession
-    [FBSession.activeSession closeAndClearTokenInformation];
+   // [FBSession.activeSession closeAndClearTokenInformation];
     //清除google
-    [[GPPSignIn sharedInstance] signOut];
+  //  [[GPPSignIn sharedInstance] signOut];
     //注册push功能
-    [[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound ];
+   // [[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeSound ];
    
+    [self createTabbar];
+
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
@@ -104,9 +106,8 @@ static NSString * const kClientID =
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
     
-  
     NSString *urlstr = [url absoluteString];
-
+  
     NSRange range = [urlstr rangeOfString:@"google"];
 
     if (range.location != NSNotFound) {
@@ -119,9 +120,11 @@ static NSString * const kClientID =
                              annotation:annotation];
     }
     else{
-        STRLOG(@"facebook");
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"facebook" object:nil];
-         return [FBSession.activeSession handleOpenURL:url];
+         STRLOG(@"facebook");
+        return NO;
+      
+//        [[NSNotificationCenter defaultCenter] postNotificationName:@"facebook" object:nil];
+//         return [FBSession.activeSession handleOpenURL:url];
        // return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
     }
 }
@@ -148,7 +151,7 @@ static NSString * const kClientID =
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    [FBAppCall handleDidBecomeActive];
+  //  [FBAppCall handleDidBecomeActive];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

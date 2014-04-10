@@ -39,6 +39,14 @@
     return gameStr;
 }
 
++(NSString*)getActivityDataFile
+{
+    NSString *activityStr = [YCFileMgr getDocumentFile];
+    activityStr = [activityStr stringByAppendingPathComponent:@"activityData"];
+    [[NSFileManager defaultManager]createDirectoryAtPath:activityStr withIntermediateDirectories:YES attributes:nil error:nil];
+    return activityStr;
+}
+
 ////写入string,
 //+(BOOL)saveStringToFullPath:(NSString *)fullPath string:(NSString *)string append:(BOOL)flag
 //{
@@ -49,25 +57,42 @@
 //}
 
 //写入data
-+(BOOL)saveDataToFullPath:(NSInteger)gamePage data:(NSData *)data append:(BOOL)flag
++(BOOL)saveDataToFullPath:(NSString *)vc andPage:(NSInteger)Page data:(NSData *)data append:(BOOL)flag
 {
-    NSString *gamePath =  [self getGameDataFile];
-    
-    BOOL isSuccess = NO;
-    
-    if(!flag)
-    {
-        NSString *pagePath = [gamePath stringByAppendingPathComponent:[NSString stringWithFormat:@"page%ld.txt",(long)gamePage]];
-        STRLOG(@"path:%@",pagePath);
-       isSuccess = [[NSFileManager defaultManager] createFileAtPath:pagePath contents:data attributes:nil];
-        
-    }
-    else
-    {
+    if ([vc isEqualToString:@"boutique"]) {
+        NSString *gamePath =  [self getGameDataFile];
+        BOOL isSuccess = NO;
+        if(!flag)
+        {
+            NSString *pagePath = [gamePath stringByAppendingPathComponent:[NSString stringWithFormat:@"page%ld.txt",(long)Page]];
+            STRLOG(@"path:%@",pagePath);
+            isSuccess = [[NSFileManager defaultManager] createFileAtPath:pagePath contents:data attributes:nil];
+        }
+        else
+        {
+            
+        }
+        return isSuccess;
+    }else  if ([vc isEqualToString:@"activity"]){
+        NSString *activityPath =  [self getActivityDataFile];
+        BOOL isSuccess = NO;
+        if(!flag)
+        {
+            NSString *pagePath = [activityPath stringByAppendingPathComponent:[NSString stringWithFormat:@"page%ld.txt",(long)Page]];
+            STRLOG(@"path:%@",pagePath);
+            isSuccess = [[NSFileManager defaultManager] createFileAtPath:pagePath contents:data attributes:nil];
+        }
+        else
+        {
+            
+        }
+        return isSuccess;
 
+    }else{
+        return NO;
     }
-    return isSuccess;
 }
+
 //删除文件
 +(BOOL)removeFile:(NSString *)fullPath
 {

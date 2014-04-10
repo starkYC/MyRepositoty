@@ -15,5 +15,7 @@
 @synthesize summary = _summary;
 @synthesize appID = _appID;
 @synthesize price = _price;
-
+@synthesize version = _version;
+@synthesize times = _times;
+@synthesize size = _size;
 @end

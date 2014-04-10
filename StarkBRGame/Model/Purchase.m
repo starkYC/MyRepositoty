@@ -261,7 +261,6 @@ static Purchase *purchase = nil;
     
     _data = [[NSMutableData alloc] init];
     
-    
     NSString* sendString = [[NSString alloc] initWithFormat:@"{\"receipt-data\":\"%@\"}",ObjectString ];
     
     NSURL *sandboxStoreURL = [[NSURL alloc] initWithString: @"https://sandbox.itunes.apple.com/verifyReceipt"];

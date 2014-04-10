@@ -13,4 +13,6 @@
 @property (nonatomic,copy) NSString * userID;
 @property (nonatomic,copy) NSString * userEmail;
 @property (nonatomic,copy) NSString * userName;
+@property (nonatomic,copy) NSString * imageUrl;
+@property (nonatomic,copy) NSString * type;
 @end

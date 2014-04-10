@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>Stark</string>
+	<string>FreeApp</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIcons</key>
@@ -21,11 +21,9 @@
 		</dict>
 	</dict>
 	<key>CFBundleIdentifier</key>
-	<string>com.google.StarkBRGame</string>
+	<string>com.starkinteractive.freework</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
-	<key>CFBundleName</key>
-	<string>Freework</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -37,26 +35,16 @@
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>fb703140323059100</string>
-			</array>
-		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>com.google.StarkBRGame</string>
+			<string>com.starkinteractive.freework</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.google.StarkBRGame</string>
+				<string>com.starkinteractive.freework</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
-	<key>FacebookAppID</key>
-	<string>703140323059100</string>
 	<key>Item 0 </key>
 	<string>icon.png</string>
 	<key>LSRequiresIPhoneOS</key>

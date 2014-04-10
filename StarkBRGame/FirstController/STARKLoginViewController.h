@@ -8,7 +8,7 @@
 
 #import "RootViewController.h"
 #import <FacebookSDK/FacebookSDK.h>
-
+#import "AccoutInfo.h"
 
 #import "STARKPersonalViewController.h"
 
@@ -16,10 +16,11 @@
 
 @interface STARKLoginViewController : RootViewController
     <PersonDelegate>
-@property (nonatomic,copy) NSString *userID;
-@property (nonatomic,copy) NSString *type;
+
+@property (nonatomic,retain) AccoutInfo * userInfo;
 
 - (IBAction)fbbuttonClicked:(id)sender ;
+
 @property (weak, nonatomic) IBOutlet GPPSignInButton *googleButton;
 @property (weak, nonatomic) IBOutlet UIButton *fbButton;
 
