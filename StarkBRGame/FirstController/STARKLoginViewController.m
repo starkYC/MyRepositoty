@@ -14,8 +14,6 @@
 #import "AccoutInfo.h"
 #import "AppDelegate.h"
 
-
-
 @interface STARKLoginViewController ()<GPPSignInDelegate>
 {
     UIActivityIndicatorView *_indicatorView;
