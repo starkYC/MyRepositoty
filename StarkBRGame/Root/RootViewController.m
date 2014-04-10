@@ -51,6 +51,7 @@
 
 }
 
+
 - (BOOL)checkOutLocalData:(NSString *)vc andPage:(NSInteger)page{
     
     if ([vc isEqualToString:@"boutique"]) {

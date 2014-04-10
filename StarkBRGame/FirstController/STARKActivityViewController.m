@@ -53,6 +53,12 @@
     [self addFooter];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    self.navigationController.toolbarHidden = YES;
+}
+
 - (void)addHeader
 {
     MJRefreshHeaderView *header = [[MJRefreshHeaderView alloc] init];

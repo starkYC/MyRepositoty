@@ -24,6 +24,7 @@
 @property (nonatomic,copy) NSString *type;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 
+@property (weak, nonatomic) IBOutlet UIScrollView *gameListView;
 @property (nonatomic,assign) id <PersonDelegate> delegate;
 
 @property (nonatomic,retain) AccoutInfo *userInfo;

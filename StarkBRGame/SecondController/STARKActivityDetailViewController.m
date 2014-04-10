@@ -18,6 +18,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        self.hidesBottomBarWhenPushed = YES;
 
         self.navigationItem.title = @"活动详情";
     }
@@ -29,7 +30,15 @@
     [super viewDidLoad];
  
     self.view.bounds = [[UIScreen mainScreen] bounds];
-
+    self.navigationController.toolbarHidden = NO;
+    UIBarButtonItem *three = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:nil action:nil];
+    UIBarButtonItem *four = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:nil action:nil];
+    UIBarButtonItem *flexItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    
+    //toolbar是整个navigation堆栈里的view共同的,但toolbar上面的items却是每个view单独拥有的
+    //现在只是设置了当前view的toolbaritem,与其他view的toolbaritme是没有关系的
+    
+    [self setToolbarItems:[NSArray arrayWithObjects:flexItem, three, flexItem, four, flexItem, nil]];
     // Do any additional setup after loading the view from its nib.
 }
 

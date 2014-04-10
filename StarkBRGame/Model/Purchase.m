@@ -461,8 +461,6 @@ static Purchase *purchase = nil;
         
         [_delegate failedRestore:self error:error.code message:error.localizedDescription];
     }
-    
-
 }
 
 

@@ -17,9 +17,23 @@
 }
 @property (nonatomic,assign) BoutiqueModel *model;
 
-@property (weak, nonatomic) IBOutlet UIImageView *appImage;
-@property (weak, nonatomic) IBOutlet UILabel *appTitle;
-@property (weak, nonatomic) IBOutlet UILabel *appPrice;
-@property (weak, nonatomic) IBOutlet UIScrollView *screenshotView;
+@property (weak, nonatomic) IBOutlet UIScrollView *bgScrollView;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *imgView;
+@property (weak, nonatomic) IBOutlet UILabel *downloadLabel;
+@property (weak, nonatomic) IBOutlet UILabel *sizeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *categoryLabel;
+@property (weak, nonatomic) IBOutlet UILabel *versionLabel;
+@property (weak, nonatomic) IBOutlet UIScrollView *screenShotView;
+@property (weak, nonatomic) IBOutlet UILabel *summaryLabel;
+@property (weak, nonatomic) IBOutlet UILabel *lineLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *devLabel;
+@property (weak, nonatomic) IBOutlet UILabel *lanLabel;
+@property (weak, nonatomic) IBOutlet UILabel *sistemLabel;
+@property (weak, nonatomic) IBOutlet UIView *otherView;
+@property (weak, nonatomic) IBOutlet UIView *contentView;
+
+
 
 @end

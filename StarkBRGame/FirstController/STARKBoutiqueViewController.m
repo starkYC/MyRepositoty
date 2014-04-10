@@ -59,7 +59,12 @@
     // 1.2.上拉加载更多
     [self addFooter];
 }
-
+- (void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden = NO;
+    self.navigationController.toolbarHidden = YES;
+}
 #pragma mark
 
 #pragma mark  下拉上拉刷新

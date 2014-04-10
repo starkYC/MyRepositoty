@@ -110,6 +110,13 @@
 		08BC3F2218AA0023006B4D01 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 08BC3F2118AA0023006B4D01 /* libsqlite3.dylib */; };
 		08BC3F2518AA00B3006B4D01 /* AccoutInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 08BC3F2418AA00B3006B4D01 /* AccoutInfo.m */; };
 		08BC3F2B18AA0B40006B4D01 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 08BC3F2D18AA0B40006B4D01 /* Localizable.strings */; };
+		08D7AE7318F699A200C4D904 /* tab_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 08D7AE6C18F699A200C4D904 /* tab_0.png */; };
+		08D7AE7418F699A200C4D904 /* tab_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 08D7AE6D18F699A200C4D904 /* tab_1.png */; };
+		08D7AE7518F699A200C4D904 /* tab_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 08D7AE6E18F699A200C4D904 /* tab_2.png */; };
+		08D7AE7618F699A200C4D904 /* tab_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 08D7AE6F18F699A200C4D904 /* tab_3.png */; };
+		08D7AE7718F699A200C4D904 /* tab_s.png in Resources */ = {isa = PBXBuildFile; fileRef = 08D7AE7018F699A200C4D904 /* tab_s.png */; };
+		08D7AE7818F699A200C4D904 /* tabbar_compare.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 08D7AE7118F699A200C4D904 /* tabbar_compare.jpg */; };
+		08D7AE7918F699A200C4D904 /* tabbar_controllerviews.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 08D7AE7218F699A200C4D904 /* tabbar_controllerviews.jpg */; };
 		08DB3BE618C81F90003B8583 /* YCGameMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 08DB3BE518C81F90003B8583 /* YCGameMgr.m */; };
 		08DB3BF518C831E6003B8583 /* YCNotifyMsg.m in Sources */ = {isa = PBXBuildFile; fileRef = 08DB3BF418C831E6003B8583 /* YCNotifyMsg.m */; };
 		08EA9A7618C5E39000C39503 /* Contents.json in Resources */ = {isa = PBXBuildFile; fileRef = 08EA9A7518C5E39000C39503 /* Contents.json */; };
@@ -294,6 +301,13 @@
 		08BC3F2E18AA0B60006B4D01 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		08BC3F2F18AA0B60006B4D01 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		08BC3F3018AA0B60006B4D01 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		08D7AE6C18F699A200C4D904 /* tab_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab_0.png; sourceTree = "<group>"; };
+		08D7AE6D18F699A200C4D904 /* tab_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab_1.png; sourceTree = "<group>"; };
+		08D7AE6E18F699A200C4D904 /* tab_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab_2.png; sourceTree = "<group>"; };
+		08D7AE6F18F699A200C4D904 /* tab_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab_3.png; sourceTree = "<group>"; };
+		08D7AE7018F699A200C4D904 /* tab_s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab_s.png; sourceTree = "<group>"; };
+		08D7AE7118F699A200C4D904 /* tabbar_compare.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tabbar_compare.jpg; sourceTree = "<group>"; };
+		08D7AE7218F699A200C4D904 /* tabbar_controllerviews.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tabbar_controllerviews.jpg; sourceTree = "<group>"; };
 		08DB3BE518C81F90003B8583 /* YCGameMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCGameMgr.m; sourceTree = "<group>"; };
 		08DB3BF318C831E6003B8583 /* YCNotifyMsg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCNotifyMsg.h; sourceTree = "<group>"; };
 		08DB3BF418C831E6003B8583 /* YCNotifyMsg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCNotifyMsg.m; sourceTree = "<group>"; };
@@ -346,12 +360,12 @@
 		083B2476188D1F1C007F4738 /* SecondController */ = {
 			isa = PBXGroup;
 			children = (
-				083B247B188D1F1C007F4738 /* STARKActivityDetailViewController.h */,
-				083B2477188D1F1C007F4738 /* STARKActivityDetailViewController.m */,
-				083B2478188D1F1C007F4738 /* STARKActivityDetailViewController.xib */,
 				083B2479188D1F1C007F4738 /* STARKAPPDetailViewController.h */,
 				083B247A188D1F1C007F4738 /* STARKAPPDetailViewController.m */,
 				083B247C188D1F1C007F4738 /* STARKAPPDetailViewController.xib */,
+				083B247B188D1F1C007F4738 /* STARKActivityDetailViewController.h */,
+				083B2477188D1F1C007F4738 /* STARKActivityDetailViewController.m */,
+				083B2478188D1F1C007F4738 /* STARKActivityDetailViewController.xib */,
 				089D5CEB18B1B3D3003B1842 /* StarkPurchaseViewController.h */,
 				089D5CEC18B1B3D3003B1842 /* StarkPurchaseViewController.m */,
 			);
@@ -411,6 +425,7 @@
 		086416E218865D51005A2D43 /* StarkBRGame */ = {
 			isa = PBXGroup;
 			children = (
+				08D7AE6B18F699A200C4D904 /* tabImage */,
 				0868FE3718F3DFBF00A733B5 /* 1.png */,
 				0868FE3818F3DFBF00A733B5 /* 2.png */,
 				0868FE3918F3DFBF00A733B5 /* 3.png */,
@@ -688,6 +703,20 @@
 			name = Languages;
 			sourceTree = "<group>";
 		};
+		08D7AE6B18F699A200C4D904 /* tabImage */ = {
+			isa = PBXGroup;
+			children = (
+				08D7AE6C18F699A200C4D904 /* tab_0.png */,
+				08D7AE6D18F699A200C4D904 /* tab_1.png */,
+				08D7AE6E18F699A200C4D904 /* tab_2.png */,
+				08D7AE6F18F699A200C4D904 /* tab_3.png */,
+				08D7AE7018F699A200C4D904 /* tab_s.png */,
+				08D7AE7118F699A200C4D904 /* tabbar_compare.jpg */,
+				08D7AE7218F699A200C4D904 /* tabbar_controllerviews.jpg */,
+			);
+			path = tabImage;
+			sourceTree = "<group>";
+		};
 		08DB3BED18C8312B003B8583 /* notification */ = {
 			isa = PBXGroup;
 			children = (
@@ -797,6 +826,7 @@
 				0864945A18E952CF00C22E13 /* STARKActivityViewController.xib in Resources */,
 				08EA9A7618C5E39000C39503 /* Contents.json in Resources */,
 				083B247E188D1F1C007F4738 /* STARKActivityDetailViewController.xib in Resources */,
+				08D7AE7618F699A200C4D904 /* tab_3.png in Resources */,
 				083B2480188D1F1C007F4738 /* STARKAPPDetailViewController.xib in Resources */,
 				0864945C18E952CF00C22E13 /* STARKBoutiqueViewController.xib in Resources */,
 				089D5CF618B1EFEE003B1842 /* Default.png in Resources */,
@@ -811,13 +841,19 @@
 				08BC3F2B18AA0B40006B4D01 /* Localizable.strings in Resources */,
 				089D5CEA18B1AE67003B1842 /* SetterCell.xib in Resources */,
 				089847E818AC65B700232262 /* MJRefresh.bundle in Resources */,
+				08D7AE7718F699A200C4D904 /* tab_s.png in Resources */,
 				0864178B18866218005A2D43 /* README.md in Resources */,
 				0864946018E952CF00C22E13 /* STARKPersonalViewController.xib in Resources */,
 				0868FE3E18F3DFBF00A733B5 /* 3.png in Resources */,
 				089D5CFA18B1EFEE003B1842 /* icon.png in Resources */,
+				08D7AE7818F699A200C4D904 /* tabbar_compare.jpg in Resources */,
+				08D7AE7418F699A200C4D904 /* tab_1.png in Resources */,
+				08D7AE7518F699A200C4D904 /* tab_2.png in Resources */,
 				089D5CF818B1EFEE003B1842 /* Default-568h@2x.png in Resources */,
 				0868FE4018F3DFBF00A733B5 /* 5.png in Resources */,
 				0864946218E952CF00C22E13 /* STARKSetterViewController.xib in Resources */,
+				08D7AE7318F699A200C4D904 /* tab_0.png in Resources */,
+				08D7AE7918F699A200C4D904 /* tabbar_controllerviews.jpg in Resources */,
 				085AF49518F56097009F7EF3 /* GooglePlus.bundle in Resources */,
 				0864178A18866218005A2D43 /* LICENSE in Resources */,
 			);

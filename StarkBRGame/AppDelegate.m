@@ -80,20 +80,24 @@ static NSString * const kClientID = @"518282106675-gqgcgnne0pk0da7lc1t510va4unbh
     
     STARKBoutiqueViewController *boutique = [[STARKBoutiqueViewController alloc] initWithNibName:@"STARKBoutiqueViewController" bundle:nil];
     boutique.title = NSLocalizedString(@"精品", nil);
+    boutique.tabBarItem.image = [UIImage imageNamed:@"tab_0.png"];
     UINavigationController *nav1 = [[UINavigationController alloc] initWithRootViewController:boutique];
-
+    
     STARKActivityViewController *activity = [[STARKActivityViewController alloc] initWithNibName:@"STARKActivityViewController" bundle:nil];
     activity.title = NSLocalizedString(@"活动",nil);
+    activity.tabBarItem.image = [UIImage imageNamed:@"tab_1.png"];
     UINavigationController *nav2 = [[UINavigationController alloc] initWithRootViewController:activity];
 
     STARKLoginViewController *login = [[STARKLoginViewController alloc]
         initWithNibName:@"STARKLoginViewController" bundle:nil];
-    login.title = NSLocalizedString(@"我的",nil);
+    login.title = NSLocalizedString(@"个人中心",nil);
+    login.tabBarItem.image = [UIImage imageNamed:@"tab_2.png"];
     UINavigationController *nav3 = [[UINavigationController alloc] initWithRootViewController:login];
    
     STARKSetterViewController *setter = [[STARKSetterViewController alloc]
         initWithNibName:@"STARKSetterViewController" bundle:nil];
     setter.title = NSLocalizedString(@"设置",nil);
+    setter.tabBarItem.image = [UIImage imageNamed:@"tab_3.png"];
     UINavigationController *nav4 = [[UINavigationController alloc] initWithRootViewController:setter];
    
     UITabBarController *tabbar = [[UITabBarController alloc] init];
